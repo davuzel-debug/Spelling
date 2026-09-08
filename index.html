@@ -449,7 +449,7 @@
 
 
   <h2 id="setupTitle">
-    How long do you want to play?
+    💪 How strong do you feel today?
   </h2>
 
 
@@ -462,7 +462,7 @@
       class="btn-green"
       onclick="start(5)">
 
-      🟢 Short game – 5 words
+      🟢 Easy – 5 words
 
     </button>
 
@@ -474,7 +474,7 @@
       class="btn-yellow"
       onclick="start(10)">
 
-      🟡 Medium game – 10 words
+      🟡 Challenge – 10 words
 
     </button>
 
@@ -494,7 +494,7 @@
       class="btn-green"
       onclick="startAllByPercentage(1/3)">
 
-      🟢 First third
+      🟢 Warm-up – 1/3
 
     </button>
 
@@ -506,7 +506,7 @@
       class="btn-yellow"
       onclick="startAllByPercentage(2/3)">
 
-      🟡 Two thirds
+      🟡 Challenge – 2/3
 
     </button>
 
@@ -518,7 +518,7 @@
       class="btn-red"
       onclick="startAllByPercentage(1)">
 
-      🔴 All words
+      🔴 Beast mode – ALL
 
     </button>
 
@@ -532,7 +532,7 @@
     class="btn-red"
     onclick="startFullLesson()">
 
-    🔴 Full lesson
+    🔴 Beast mode – Full lesson
 
   </button>
 
@@ -913,7 +913,7 @@ function selectLesson(lessonNumber) {
     document
       .getElementById('setupTitle')
       .innerText =
-        "How much do you want to practice?";
+        "🔥 How much can you handle?";
 
 
     // Hide normal levels
@@ -932,8 +932,7 @@ function selectLesson(lessonNumber) {
         'block';
 
 
-    // IMPORTANT:
-    // Hide Full lesson button for ALL
+    // Hide Full lesson button
 
     document
       .getElementById('fullButton')
@@ -962,19 +961,19 @@ function selectLesson(lessonNumber) {
     document
       .getElementById('allThirdButton')
       .innerText =
-        `🟢 First third – ${firstThird} words`;
+        `🟢 Warm-up – 1/3 (${firstThird} words)`;
 
 
     document
       .getElementById('allTwoThirdButton')
       .innerText =
-        `🟡 Two thirds – ${twoThirds} words`;
+        `🟡 Challenge – 2/3 (${twoThirds} words)`;
 
 
     document
       .getElementById('allFullButton')
       .innerText =
-        `🔴 All words – ${wordCount} words`;
+        `🔴 Beast mode – ALL (${wordCount} words)`;
 
 
     // Show setup
@@ -1047,7 +1046,7 @@ function selectLesson(lessonNumber) {
   document
     .getElementById('setupTitle')
     .innerText =
-      "How long do you want to play?";
+      "💪 How strong do you feel today?";
 
 
   // ----------------------------------------------
@@ -1066,7 +1065,7 @@ function selectLesson(lessonNumber) {
       'inline-block';
 
     shortButton.innerText =
-      '🟢 Short game – 5 words';
+      '🟢 Easy – 5 words';
 
   } else {
 
@@ -1091,7 +1090,7 @@ function selectLesson(lessonNumber) {
       'inline-block';
 
     mediumButton.innerText =
-      '🟡 Medium game – 10 words';
+      '🟡 Challenge – 10 words';
 
   } else {
 
@@ -1111,7 +1110,7 @@ function selectLesson(lessonNumber) {
 
 
   fullButton.innerText =
-    `🔴 Full lesson – ${wordCount} words`;
+    `🔴 Beast mode – Full lesson (${wordCount} words)`;
 
 
   // ----------------------------------------------
@@ -1251,7 +1250,7 @@ function backToLessons() {
   document
     .getElementById('setupTitle')
     .innerText =
-      "How long do you want to play?";
+      "💪 How strong do you feel today?";
 
 
   speechSynthesis.cancel();
@@ -1465,8 +1464,6 @@ function checkAnswer() {
         </div>`;
 
 
-    // Remove from mistakes
-
     wrongWords =
       wrongWords.filter(
         w => w.en !== current.en
@@ -1565,8 +1562,6 @@ function checkAnswer() {
 
 function next() {
 
-  // If answer has not been checked yet
-
   if (
     current.en &&
     !checked
@@ -1585,8 +1580,6 @@ function next() {
   if (
     index >= selectedWords.length
   ) {
-
-    // Repeat mistakes
 
     if (wrongWords.length > 0) {
 
