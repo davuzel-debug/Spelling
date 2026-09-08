@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
@@ -367,12 +366,13 @@
     }
 
   </style>
-
 </head>
+
 
 <body>
 
 <h1>Procvičování angličtiny</h1>
+
 
 <!-- =========================================
      VÝBĚR LEKCE
@@ -409,6 +409,7 @@
 
 </div>
 
+
 <!-- =========================================
      VÝBĚR DÉLKY HRY
      ========================================= -->
@@ -421,29 +422,33 @@
 
   <h2>Jak dlouhou chceš hru?</h2>
 
-<button
- id="shortButton"
- class="btn-green"
- onclick="start(5)">
-🟢 Krátká hra – 5 slov </button>
+  <button
+    id="shortButton"
+    class="btn-green"
+    onclick="start(5)">
+    🟢 Krátká hra – 5 slov
+  </button>
 
   <br>
 
-<button
- id="mediumButton"
- class="btn-yellow"
- onclick="start(10)">
-🟡 Střední hra – 10 slov </button>
+  <button
+    id="mediumButton"
+    class="btn-yellow"
+    onclick="start(10)">
+    🟡 Střední hra – 10 slov
+  </button>
 
   <br>
 
-<button
- id="fullButton"
- class="btn-red"
- onclick="startFullLesson()">
-🔴 Celá lekce </button>
+  <button
+    id="fullButton"
+    class="btn-red"
+    onclick="startFullLesson()">
+    🔴 Celá lekce
+  </button>
 
 </div>
+
 
 <!-- =========================================
      HRA
@@ -455,76 +460,76 @@
     ← Zpět na výběr lekce
   </button>
 
+
   <div class="game-container">
 
-```
-<div class="progress-wrapper">
+    <div class="progress-wrapper">
 
-  <div class="bar">
-    <div class="bar-fill" id="progress"></div>
-  </div>
+      <div class="bar">
+        <div class="bar-fill" id="progress"></div>
+      </div>
 
-  <div id="progressText"></div>
+      <div id="progressText"></div>
 
-</div>
-
-
-<div class="card" id="czWord"></div>
+    </div>
 
 
-<input
-  type="text"
-  id="answer"
-  autocomplete="off"
-  autocapitalize="none"
-  spellcheck="false"
->
+    <div class="card" id="czWord"></div>
 
 
-<div class="game-buttons">
-
-  <button
-    id="checkButton"
-    class="check-button"
-    onclick="next()">
-    Zkontrolovat
-  </button>
-
-  <button
-    id="nextButton"
-    class="next-button"
-    onclick="next()"
-    style="display:none;">
-    Další →
-  </button>
-
-  <br>
-
-  <button
-    class="secondary-button"
-    onclick="hint()">
-    💡 Nápověda
-  </button>
-
-  <button
-    class="secondary-button"
-    onclick="speak(current.en)">
-    🔊
-  </button>
-
-</div>
+    <input
+      type="text"
+      id="answer"
+      autocomplete="off"
+      autocapitalize="none"
+      spellcheck="false"
+    >
 
 
-<div id="streak"></div>
+    <div class="game-buttons">
 
-<div id="result"></div>
+      <button
+        id="checkButton"
+        class="check-button"
+        onclick="next()">
+        Zkontrolovat
+      </button>
 
-<div id="hintText"></div>
-```
+      <button
+        id="nextButton"
+        class="next-button"
+        onclick="next()"
+        style="display:none;">
+        Další →
+      </button>
+
+      <br>
+
+      <button
+        class="secondary-button"
+        onclick="hint()">
+        💡 Nápověda
+      </button>
+
+      <button
+        class="secondary-button"
+        onclick="speak(current.en)">
+        🔊
+      </button>
+
+    </div>
+
+
+    <div id="streak"></div>
+
+    <div id="result"></div>
+
+    <div id="hintText"></div>
 
   </div>
 
 </div>
+
 
 <!-- =========================================
      KONEC HRY
@@ -536,56 +541,56 @@
     ← Zpět na výběr lekce
   </button>
 
+
   <div class="final-container">
 
-```
-<div class="final-title">
-  🎉 GREAT JOB, TEO!
-</div>
+    <div class="final-title">
+      🎉 GREAT JOB, TEO!
+    </div>
 
-<div
-  class="final-score"
-  id="finalScore">
-</div>
+    <div
+      class="final-score"
+      id="finalScore">
+    </div>
 
-<div
-  class="final-stat"
-  id="finalStreak">
-</div>
+    <div
+      class="final-stat"
+      id="finalStreak">
+    </div>
 
-<div
-  class="final-stat"
-  id="finalMistakes">
-</div>
+    <div
+      class="final-stat"
+      id="finalMistakes">
+    </div>
 
-<div
-  class="final-stat"
-  id="finalHints">
-</div>
+    <div
+      class="final-stat"
+      id="finalHints">
+    </div>
 
 
-<div class="final-buttons">
+    <div class="final-buttons">
 
-  <button
-    class="btn-green"
-    onclick="restart()">
-    🔄 Zkusit znovu
-  </button>
+      <button
+        class="btn-green"
+        onclick="restart()">
+        🔄 Zkusit znovu
+      </button>
 
-  <br>
+      <br>
 
-  <button
-    class="secondary-button"
-    onclick="backToLessons()">
-    📚 Vybrat jinou lekci
-  </button>
+      <button
+        class="secondary-button"
+        onclick="backToLessons()">
+        📚 Vybrat jinou lekci
+      </button>
 
-</div>
-```
+    </div>
 
   </div>
 
 </div>
+
 
 <script>
 
@@ -652,7 +657,7 @@ let currentHintLevel = 0;
 
 
 // ==================================================
-// NASTAVENÍ POČTU SLOV U LEKCÍ
+// POČET SLOV U LEKCÍ
 // ==================================================
 
 function updateLessonCounts() {
@@ -674,7 +679,6 @@ function updateLessonCounts() {
 
       countElement.innerText =
         `zatím bez slov`;
-
     }
   }
 }
@@ -707,20 +711,20 @@ function selectLesson(lessonNumber) {
 
 
   // ----------------------------------------------
-  // KRÁTKÁ HRA
+  // KRÁTKÁ HRA – 5 SLOV
   // ----------------------------------------------
 
   const shortButton =
     document.getElementById('shortButton');
 
 
-  if (wordCount >= 5) {
+  if (wordCount >= 6) {
 
     shortButton.style.display =
       'inline-block';
 
     shortButton.innerText =
-      `🟢 Krátká hra – 5 slov`;
+      '🟢 Krátká hra – 5 slov';
 
   } else {
 
@@ -730,20 +734,20 @@ function selectLesson(lessonNumber) {
 
 
   // ----------------------------------------------
-  // STŘEDNÍ HRA
+  // STŘEDNÍ HRA – 10 SLOV
   // ----------------------------------------------
 
   const mediumButton =
     document.getElementById('mediumButton');
 
 
-  if (wordCount >= 10) {
+  if (wordCount >= 11) {
 
     mediumButton.style.display =
       'inline-block';
 
     mediumButton.innerText =
-      `🟡 Střední hra – 10 slov`;
+      '🟡 Střední hra – 10 slov';
 
   } else {
 
@@ -762,6 +766,9 @@ function selectLesson(lessonNumber) {
 
   fullButton.innerText =
     `🔴 Celá lekce – ${wordCount} slov`;
+
+  fullButton.style.display =
+    'inline-block';
 
 
   // ----------------------------------------------
@@ -802,8 +809,6 @@ function backToLessons() {
     .style.display = 'block';
 
 
-  // Reset hry
-
   selectedLesson = 0;
 
   selectedWords = [];
@@ -830,8 +835,6 @@ function backToLessons() {
 
   currentHintLevel = 0;
 
-
-  // Reset UI
 
   document
     .getElementById('progress')
@@ -1001,15 +1004,12 @@ function checkAnswer() {
     input === current.en.toLowerCase()
   ) {
 
-    // ------------------------------
-    // SPRÁVNĚ
-    // ------------------------------
-
     correct++;
 
     streak++;
 
     if (streak > maxStreak) {
+
       maxStreak = streak;
     }
 
@@ -1027,8 +1027,6 @@ function checkAnswer() {
         w => w.en !== current.en
       );
 
-
-    // Série
 
     const streakElement =
       document.getElementById('streak');
@@ -1051,10 +1049,6 @@ function checkAnswer() {
 
 
   } else {
-
-    // ------------------------------
-    // ŠPATNĚ
-    // ------------------------------
 
     mistakeCount++;
 
@@ -1093,8 +1087,6 @@ function checkAnswer() {
   checked = true;
 
 
-  // Změna tlačítek
-
   document
     .getElementById('checkButton')
     .style.display = 'none';
@@ -1116,7 +1108,6 @@ function checkAnswer() {
 
 function next() {
 
-  // Pokud ještě nebyla odpověď zkontrolována
   if (
     current.en &&
     !checked
@@ -1138,13 +1129,10 @@ function next() {
 
     if (wrongWords.length > 0) {
 
-      // Opakování chybných slov
-
       selectedWords =
         [...wrongWords];
 
       index = 0;
-
 
     } else {
 
@@ -1186,11 +1174,8 @@ function next() {
 
   currentHintLevel = 0;
 
-
   checked = false;
 
-
-  // Tlačítka
 
   document
     .getElementById('checkButton')
@@ -1225,9 +1210,6 @@ function hint() {
   hintCount++;
 
 
-  // Pokud je nápověda poprvé použita,
-  // zobrazíme první a poslední písmeno.
-
   if (currentHintLevel === 0) {
 
     currentHintLevel = 2;
@@ -1235,11 +1217,8 @@ function hint() {
   } else {
 
     currentHintLevel++;
-
   }
 
-
-  // Maximálně zobrazíme celé slovo
 
   if (
     currentHintLevel >= word.length
@@ -1352,7 +1331,7 @@ function finish() {
   document
     .getElementById('finalMistakes')
     .innerText =
-      `🔁 Slov k opakování: ${mistakeCount}`;
+      `🔁 Chybné pokusy: ${mistakeCount}`;
 
 
   document
@@ -1361,11 +1340,9 @@ function finish() {
       `💡 Použitá nápověda: ${hintCount}×`;
 
 
-  let text =
-    `Well done Teo! Great job!`;
-
-
-  speak(text);
+  speak(
+    'Well done Teo! Great job!'
+  );
 }
 
 
@@ -1382,10 +1359,6 @@ function restart() {
   document
     .getElementById('setup')
     .style.display = 'block';
-
-
-  // Aktualizujeme počet slov
-  // pro případ změny lekce
 
   selectLesson(selectedLesson);
 }
@@ -1404,7 +1377,6 @@ document
       if (e.key === 'Enter') {
 
         next();
-
       }
 
     }
