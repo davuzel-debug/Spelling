@@ -72,6 +72,28 @@
 
 
     /* =========================================
+       ALL LEKCE
+       ========================================= */
+
+    .all-button {
+      background: #f44336;
+      color: white;
+      margin-top: 25px;
+    }
+
+    .all-button small {
+      color: white;
+    }
+
+    .lesson-separator {
+      width: 320px;
+      max-width: 90%;
+      margin: 25px auto 5px;
+      border-top: 2px solid #eeeeee;
+    }
+
+
+    /* =========================================
        VÝBĚR DÉLKY
        ========================================= */
 
@@ -382,29 +404,56 @@
 
   <h2>Vyber spelling lekci</h2>
 
+
   <button class="lesson-button" onclick="selectLesson(1)">
     Spelling 1
     <small id="lessonCount1"></small>
   </button>
+
 
   <button class="lesson-button" onclick="selectLesson(2)">
     Spelling 2
     <small id="lessonCount2"></small>
   </button>
 
+
   <button class="lesson-button" onclick="selectLesson(3)">
     Spelling 3
     <small id="lessonCount3"></small>
   </button>
+
 
   <button class="lesson-button" onclick="selectLesson(4)">
     Spelling 4
     <small id="lessonCount4"></small>
   </button>
 
+
   <button class="lesson-button" onclick="selectLesson(5)">
     Spelling 5
     <small id="lessonCount5"></small>
+  </button>
+
+
+  <!-- -----------------------------------------
+       ODDĚLOVAČ
+       ----------------------------------------- -->
+
+  <div class="lesson-separator"></div>
+
+
+  <!-- -----------------------------------------
+       ALL
+       ----------------------------------------- -->
+
+  <button
+    class="lesson-button all-button"
+    onclick="selectLesson('all')">
+
+    ALL
+
+    <small id="allLessonCount"></small>
+
   </button>
 
 </div>
@@ -420,31 +469,91 @@
     ← Zpět na výběr lekce
   </button>
 
-  <h2>Jak dlouhou chceš hru?</h2>
 
-  <button
-    id="shortButton"
-    class="btn-green"
-    onclick="start(5)">
-    🟢 Krátká hra – 5 slov
-  </button>
+  <h2 id="setupTitle">
+    Jak dlouhou chceš hru?
+  </h2>
 
-  <br>
 
-  <button
-    id="mediumButton"
-    class="btn-yellow"
-    onclick="start(10)">
-    🟡 Střední hra – 10 slov
-  </button>
+  <!-- BĚŽNÁ LEKCE -->
 
-  <br>
+  <div id="normalLevels">
+
+    <button
+      id="shortButton"
+      class="btn-green"
+      onclick="start(5)">
+
+      🟢 Krátká hra – 5 slov
+
+    </button>
+
+    <br>
+
+
+    <button
+      id="mediumButton"
+      class="btn-yellow"
+      onclick="start(10)">
+
+      🟡 Střední hra – 10 slov
+
+    </button>
+
+    <br>
+
+  </div>
+
+
+  <!-- ALL LEKCE -->
+
+  <div id="allLevels" style="display:none;">
+
+    <button
+      id="allThirdButton"
+      class="btn-green"
+      onclick="startAllByPercentage(1/3)">
+
+      🟢 1. třetina
+
+    </button>
+
+    <br>
+
+
+    <button
+      id="allTwoThirdButton"
+      class="btn-yellow"
+      onclick="startAllByPercentage(2/3)">
+
+      🟡 2. třetiny
+
+    </button>
+
+    <br>
+
+
+    <button
+      id="allFullButton"
+      class="btn-red"
+      onclick="startAllByPercentage(1)">
+
+      🔴 Všechna slovíčka
+
+    </button>
+
+  </div>
+
+
+  <!-- CELÁ BĚŽNÁ LEKCE -->
 
   <button
     id="fullButton"
     class="btn-red"
     onclick="startFullLesson()">
+
     🔴 Celá lekce
+
   </button>
 
 </div>
@@ -466,15 +575,24 @@
     <div class="progress-wrapper">
 
       <div class="bar">
-        <div class="bar-fill" id="progress"></div>
+
+        <div
+          class="bar-fill"
+          id="progress">
+        </div>
+
       </div>
+
 
       <div id="progressText"></div>
 
     </div>
 
 
-    <div class="card" id="czWord"></div>
+    <div
+      class="card"
+      id="czWord">
+    </div>
 
 
     <input
@@ -492,29 +610,41 @@
         id="checkButton"
         class="check-button"
         onclick="next()">
+
         Zkontrolovat
+
       </button>
+
 
       <button
         id="nextButton"
         class="next-button"
         onclick="next()"
         style="display:none;">
+
         Další →
+
       </button>
 
+
       <br>
+
 
       <button
         class="secondary-button"
         onclick="hint()">
+
         💡 Nápověda
+
       </button>
+
 
       <button
         class="secondary-button"
         onclick="speak(current.en)">
+
         🔊
+
       </button>
 
     </div>
@@ -548,20 +678,24 @@
       🎉 GREAT JOB, TEO!
     </div>
 
+
     <div
       class="final-score"
       id="finalScore">
     </div>
+
 
     <div
       class="final-stat"
       id="finalStreak">
     </div>
 
+
     <div
       class="final-stat"
       id="finalMistakes">
     </div>
+
 
     <div
       class="final-stat"
@@ -574,15 +708,21 @@
       <button
         class="btn-green"
         onclick="restart()">
+
         🔄 Zkusit znovu
+
       </button>
 
+
       <br>
+
 
       <button
         class="secondary-button"
         onclick="backToLessons()">
+
         📚 Vybrat jinou lekci
+
       </button>
 
     </div>
@@ -596,7 +736,7 @@
 
 
 // ==================================================
-// 📚 SPELLING LEKCE
+// 📚 BĚŽNÉ SPELLING LEKCE
 // ==================================================
 
 const lessons = {
@@ -623,6 +763,27 @@ const lessons = {
   5: []
 
 };
+
+
+// ==================================================
+// ALL – VŠECHNA SLOVÍČKA
+// ==================================================
+
+let allWords = [];
+
+
+// Vytvoří ALL ze všech běžných lekcí
+function buildAllWords() {
+
+  allWords = [];
+
+  for (let i = 1; i <= 5; i++) {
+
+    allWords =
+      allWords.concat(lessons[i]);
+
+  }
+}
 
 
 // ==================================================
@@ -665,10 +826,13 @@ function updateLessonCounts() {
   for (let i = 1; i <= 5; i++) {
 
     const countElement =
-      document.getElementById(`lessonCount${i}`);
+      document.getElementById(
+        `lessonCount${i}`
+      );
 
     const count =
       lessons[i].length;
+
 
     if (count > 0) {
 
@@ -681,6 +845,21 @@ function updateLessonCounts() {
         `zatím bez slov`;
     }
   }
+
+
+  // Aktualizace ALL
+
+  buildAllWords();
+
+
+  const allCount =
+    allWords.length;
+
+
+  document
+    .getElementById('allLessonCount')
+    .innerText =
+      `${allCount} slov`;
 }
 
 
@@ -690,7 +869,106 @@ function updateLessonCounts() {
 
 function selectLesson(lessonNumber) {
 
-  selectedLesson = lessonNumber;
+  selectedLesson =
+    lessonNumber;
+
+
+  // ----------------------------------------------
+  // ALL
+  // ----------------------------------------------
+
+  if (lessonNumber === 'all') {
+
+    buildAllWords();
+
+
+    if (allWords.length === 0) {
+
+      alert(
+        "Zatím nejsou přidána žádná slovíčka."
+      );
+
+      return;
+    }
+
+
+    const wordCount =
+      allWords.length;
+
+
+    document
+      .getElementById('setupTitle')
+      .innerText =
+        "Jak velkou část chceš procvičit?";
+
+
+    // Skryjeme běžné úrovně
+
+    document
+      .getElementById('normalLevels')
+      .style.display = 'none';
+
+
+    // Zobrazíme ALL úrovně
+
+    document
+      .getElementById('allLevels')
+      .style.display = 'block';
+
+
+    // Počet slov
+
+    const firstThird =
+      Math.max(
+        1,
+        Math.ceil(wordCount / 3)
+      );
+
+
+    const twoThirds =
+      Math.max(
+        1,
+        Math.ceil(wordCount * 2 / 3)
+      );
+
+
+    document
+      .getElementById('allThirdButton')
+      .innerText =
+        `🟢 1. třetina – ${firstThird} slov`;
+
+
+    document
+      .getElementById('allTwoThirdButton')
+      .innerText =
+        `🟡 2. třetiny – ${twoThirds} slov`;
+
+
+    document
+      .getElementById('allFullButton')
+      .innerText =
+        `🔴 Všechna slovíčka – ${wordCount} slov`;
+
+
+    // Zobrazení
+
+    document
+      .getElementById('lessonSelect')
+      .style.display = 'none';
+
+
+    document
+      .getElementById('setup')
+      .style.display = 'block';
+
+
+    return;
+  }
+
+
+  // ----------------------------------------------
+  // BĚŽNÁ LEKCE
+  // ----------------------------------------------
 
   const wordsForLesson =
     lessons[lessonNumber];
@@ -710,12 +988,32 @@ function selectLesson(lessonNumber) {
     wordsForLesson.length;
 
 
+  // Zobrazíme běžné úrovně
+
+  document
+    .getElementById('normalLevels')
+    .style.display = 'block';
+
+
+  document
+    .getElementById('allLevels')
+    .style.display = 'none';
+
+
+  document
+    .getElementById('setupTitle')
+    .innerText =
+      "Jak dlouhou chceš hru?";
+
+
   // ----------------------------------------------
-  // KRÁTKÁ HRA – 5 SLOV
+  // KRÁTKÁ HRA
   // ----------------------------------------------
 
   const shortButton =
-    document.getElementById('shortButton');
+    document.getElementById(
+      'shortButton'
+    );
 
 
   if (wordCount >= 6) {
@@ -734,11 +1032,13 @@ function selectLesson(lessonNumber) {
 
 
   // ----------------------------------------------
-  // STŘEDNÍ HRA – 10 SLOV
+  // STŘEDNÍ HRA
   // ----------------------------------------------
 
   const mediumButton =
-    document.getElementById('mediumButton');
+    document.getElementById(
+      'mediumButton'
+    );
 
 
   if (wordCount >= 11) {
@@ -761,23 +1061,25 @@ function selectLesson(lessonNumber) {
   // ----------------------------------------------
 
   const fullButton =
-    document.getElementById('fullButton');
+    document.getElementById(
+      'fullButton'
+    );
 
 
   fullButton.innerText =
     `🔴 Celá lekce – ${wordCount} slov`;
 
+
   fullButton.style.display =
     'inline-block';
 
 
-  // ----------------------------------------------
-  // ZOBRAZENÍ
-  // ----------------------------------------------
+  // Zobrazení
 
   document
     .getElementById('lessonSelect')
     .style.display = 'none';
+
 
   document
     .getElementById('setup')
@@ -795,9 +1097,11 @@ function backToLessons() {
     .getElementById('setup')
     .style.display = 'none';
 
+
   document
     .getElementById('game')
     .style.display = 'none';
+
 
   document
     .getElementById('final')
@@ -808,6 +1112,8 @@ function backToLessons() {
     .getElementById('lessonSelect')
     .style.display = 'block';
 
+
+  // Reset hry
 
   selectedLesson = 0;
 
@@ -836,33 +1142,59 @@ function backToLessons() {
   currentHintLevel = 0;
 
 
+  // Reset UI
+
   document
     .getElementById('progress')
     .style.width = '0%';
+
 
   document
     .getElementById('progressText')
     .innerText = '';
 
+
   document
     .getElementById('czWord')
     .innerText = '';
+
 
   document
     .getElementById('answer')
     .value = '';
 
+
   document
     .getElementById('result')
     .innerText = '';
+
 
   document
     .getElementById('hintText')
     .innerText = '';
 
+
   document
     .getElementById('streak')
     .innerText = '';
+
+
+  // Vrátíme výběr úrovní do výchozího stavu
+
+  document
+    .getElementById('normalLevels')
+    .style.display = 'block';
+
+
+  document
+    .getElementById('allLevels')
+    .style.display = 'none';
+
+
+  document
+    .getElementById('setupTitle')
+    .innerText =
+      "Jak dlouhou chceš hru?";
 
 
   speechSynthesis.cancel();
@@ -882,11 +1214,15 @@ function shuffle(array) {
   ) {
 
     const j =
-      Math.floor(Math.random() * (i + 1));
+      Math.floor(
+        Math.random() * (i + 1)
+      );
+
 
     [array[i], array[j]] =
       [array[j], array[i]];
   }
+
 
   return array;
 }
@@ -899,7 +1235,9 @@ function shuffle(array) {
 function start(count) {
 
   const wordsForLesson =
-    lessons[selectedLesson];
+    selectedLesson === 'all'
+      ? allWords
+      : lessons[selectedLesson];
 
 
   const numberOfWords =
@@ -911,7 +1249,10 @@ function start(count) {
 
   selectedWords =
     shuffle([...wordsForLesson])
-      .slice(0, numberOfWords);
+      .slice(
+        0,
+        numberOfWords
+      );
 
 
   target = numberOfWords;
@@ -939,9 +1280,11 @@ function start(count) {
     .getElementById('setup')
     .style.display = 'none';
 
+
   document
     .getElementById('game')
     .style.display = 'block';
+
 
   document
     .getElementById('final')
@@ -955,6 +1298,36 @@ function start(count) {
 
 
 // ==================================================
+// START ALL PODLE PROCENT
+// ==================================================
+
+function startAllByPercentage(percentage) {
+
+  buildAllWords();
+
+
+  const wordCount =
+    allWords.length;
+
+
+  let numberOfWords =
+    Math.ceil(
+      wordCount * percentage
+    );
+
+
+  numberOfWords =
+    Math.max(
+      1,
+      numberOfWords
+    );
+
+
+  start(numberOfWords);
+}
+
+
+// ==================================================
 // START CELÉ LEKCE
 // ==================================================
 
@@ -962,6 +1335,7 @@ function startFullLesson() {
 
   const wordCount =
     lessons[selectedLesson].length;
+
 
   start(wordCount);
 }
@@ -1008,6 +1382,7 @@ function checkAnswer() {
 
     streak++;
 
+
     if (streak > maxStreak) {
 
       maxStreak = streak;
@@ -1029,7 +1404,9 @@ function checkAnswer() {
 
 
     const streakElement =
-      document.getElementById('streak');
+      document.getElementById(
+        'streak'
+      );
 
 
     if (streak >= 3) {
@@ -1090,6 +1467,7 @@ function checkAnswer() {
   document
     .getElementById('checkButton')
     .style.display = 'none';
+
 
   document
     .getElementById('nextButton')
@@ -1182,6 +1560,7 @@ function next() {
     .style.display =
       'inline-block';
 
+
   document
     .getElementById('nextButton')
     .style.display =
@@ -1195,7 +1574,7 @@ function next() {
 
 
 // ==================================================
-// NÁPOVĚDA – POSTUPNÉ ODKRÝVÁNÍ
+// NÁPOVĚDA
 // ==================================================
 
 function hint() {
@@ -1311,6 +1690,7 @@ function finish() {
     .getElementById('game')
     .style.display = 'none';
 
+
   document
     .getElementById('final')
     .style.display = 'block';
@@ -1356,11 +1736,20 @@ function restart() {
     .getElementById('final')
     .style.display = 'none';
 
+
   document
     .getElementById('setup')
     .style.display = 'block';
 
-  selectLesson(selectedLesson);
+
+  if (selectedLesson === 'all') {
+
+    selectLesson('all');
+
+  } else {
+
+    selectLesson(selectedLesson);
+  }
 }
 
 
