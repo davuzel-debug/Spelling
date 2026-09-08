@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Angličtina – Spelling</title>
+  <title>English Spelling</title>
 
   <style>
 
@@ -49,7 +49,7 @@
 
 
     /* =========================================
-       VÝBĚR LEKCÍ
+       LESSON SELECTION
        ========================================= */
 
     .lesson-list {
@@ -77,7 +77,7 @@
 
 
     /* =========================================
-       ALL LEKCE
+       ALL LESSON
        ========================================= */
 
     .lesson-separator {
@@ -99,7 +99,7 @@
 
 
     /* =========================================
-       VÝBĚR DÉLKY
+       GAME LENGTH
        ========================================= */
 
     .btn-green {
@@ -119,7 +119,7 @@
 
 
     /* =========================================
-       TLAČÍTKO ZPĚT
+       BACK BUTTON
        ========================================= */
 
     .back-button {
@@ -145,7 +145,7 @@
 
 
     /* =========================================
-       HRA
+       GAME
        ========================================= */
 
     .game-container {
@@ -181,7 +181,7 @@
 
 
     /* =========================================
-       SLOVO
+       WORD
        ========================================= */
 
     .card {
@@ -207,7 +207,7 @@
 
 
     /* =========================================
-       HLAVNÍ TLAČÍTKA HRY
+       GAME BUTTONS
        ========================================= */
 
     .game-buttons {
@@ -236,7 +236,7 @@
 
 
     /* =========================================
-       SÉRIE
+       STREAK
        ========================================= */
 
     #streak {
@@ -252,7 +252,7 @@
 
 
     /* =========================================
-       VÝSLEDEK ODPOVĚDI
+       ANSWER RESULT
        ========================================= */
 
     .result-box {
@@ -277,7 +277,7 @@
 
 
     /* =========================================
-       NÁPOVĚDA
+       HINT
        ========================================= */
 
     #hintText {
@@ -290,7 +290,7 @@
 
 
     /* =========================================
-       FINÁLNÍ OBRAZOVKA
+       FINAL SCREEN
        ========================================= */
 
     .final-container {
@@ -320,7 +320,7 @@
 
 
     /* =========================================
-       MOBIL / TABLET
+       MOBILE / TABLET
        ========================================= */
 
     @media (max-width: 600px) {
@@ -398,16 +398,16 @@
 
 <body>
 
-<h1>Procvičování angličtiny</h1>
+<h1>English Spelling</h1>
 
 
 <!-- =========================================
-     VÝBĚR LEKCE
+     LESSON SELECTION
      ========================================= -->
 
 <div id="lessonSelect">
 
-  <h2>Vyber spelling lekci</h2>
+  <h2>Choose a spelling lesson</h2>
 
   <div
     id="lessonList"
@@ -434,7 +434,7 @@
 
 
 <!-- =========================================
-     VÝBĚR DÉLKY HRY
+     GAME LENGTH SELECTION
      ========================================= -->
 
 <div id="setup" style="display:none;">
@@ -443,17 +443,17 @@
     class="back-button"
     onclick="backToLessons()">
 
-    ← Zpět na výběr lekce
+    ← Back to lessons
 
   </button>
 
 
   <h2 id="setupTitle">
-    Jak dlouhou chceš hru?
+    How long do you want to play?
   </h2>
 
 
-  <!-- BĚŽNÁ LEKCE -->
+  <!-- NORMAL LESSON -->
 
   <div id="normalLevels">
 
@@ -462,7 +462,7 @@
       class="btn-green"
       onclick="start(5)">
 
-      🟢 Krátká hra – 5 slov
+      🟢 Short game – 5 words
 
     </button>
 
@@ -474,7 +474,7 @@
       class="btn-yellow"
       onclick="start(10)">
 
-      🟡 Střední hra – 10 slov
+      🟡 Medium game – 10 words
 
     </button>
 
@@ -483,7 +483,7 @@
   </div>
 
 
-  <!-- ALL LEKCE -->
+  <!-- ALL LESSON -->
 
   <div
     id="allLevels"
@@ -494,7 +494,7 @@
       class="btn-green"
       onclick="startAllByPercentage(1/3)">
 
-      🟢 1. třetina
+      🟢 First third
 
     </button>
 
@@ -506,7 +506,7 @@
       class="btn-yellow"
       onclick="startAllByPercentage(2/3)">
 
-      🟡 2. třetiny
+      🟡 Two thirds
 
     </button>
 
@@ -518,21 +518,21 @@
       class="btn-red"
       onclick="startAllByPercentage(1)">
 
-      🔴 Všechna slovíčka
+      🔴 All words
 
     </button>
 
   </div>
 
 
-  <!-- CELÁ BĚŽNÁ LEKCE -->
+  <!-- FULL NORMAL LESSON -->
 
   <button
     id="fullButton"
     class="btn-red"
     onclick="startFullLesson()">
 
-    🔴 Celá lekce
+    🔴 Full lesson
 
   </button>
 
@@ -540,7 +540,7 @@
 
 
 <!-- =========================================
-     HRA
+     GAME
      ========================================= -->
 
 <div id="game" style="display:none;">
@@ -549,7 +549,7 @@
     class="back-button"
     onclick="backToLessons()">
 
-    ← Zpět na výběr lekce
+    ← Back to lessons
 
   </button>
 
@@ -595,7 +595,7 @@
         class="check-button"
         onclick="next()">
 
-        Zkontrolovat
+        Check
 
       </button>
 
@@ -606,7 +606,7 @@
         onclick="next()"
         style="display:none;">
 
-        Další →
+        Next →
 
       </button>
 
@@ -618,7 +618,7 @@
         class="secondary-button"
         onclick="hint()">
 
-        💡 Nápověda
+        💡 Hint
 
       </button>
 
@@ -646,7 +646,7 @@
 
 
 <!-- =========================================
-     KONEC HRY
+     FINAL SCREEN
      ========================================= -->
 
 <div id="final" style="display:none;">
@@ -655,7 +655,7 @@
     class="back-button"
     onclick="backToLessons()">
 
-    ← Zpět na výběr lekce
+    ← Back to lessons
 
   </button>
 
@@ -697,7 +697,7 @@
         class="btn-green"
         onclick="restart()">
 
-        🔄 Zkusit znovu
+        🔄 Try again
 
       </button>
 
@@ -709,7 +709,7 @@
         class="secondary-button"
         onclick="backToLessons()">
 
-        📚 Vybrat jinou lekci
+        📚 Choose another lesson
 
       </button>
 
@@ -724,19 +724,20 @@
 
 
 // ==================================================
-// 📚 SPELLING LEKCE
+// 📚 SPELLING LESSONS
 // ==================================================
 //
-// Stačí sem přidávat další lekce.
-// Například:
+// Add new lessons here.
+//
+// Example:
 //
 // 2: [
 //   {cz:"dům", en:"house"},
 //   {cz:"pes", en:"dog"}
 // ],
 //
-// Kartička se vytvoří automaticky.
-// Slovíčka se automaticky přidají také do ALL.
+// The lesson button is created automatically.
+// The words are automatically added to ALL.
 //
 
 const lessons = {
@@ -758,7 +759,7 @@ const lessons = {
 
 
 // ==================================================
-// ALL – VŠECHNA SLOVÍČKA
+// ALL – ALL WORDS
 // ==================================================
 
 let allWords = [];
@@ -780,7 +781,7 @@ function buildAllWords() {
 
 
 // ==================================================
-// VYKRESLENÍ LEKCÍ
+// CREATE LESSON BUTTONS
 // ==================================================
 
 function renderLessons() {
@@ -824,7 +825,7 @@ function renderLessons() {
 
       button.innerHTML =
         `Spelling ${lessonNumber}
-         <small>${words.length} slov</small>`;
+         <small>${words.length} words</small>`;
 
 
       lessonList.appendChild(button);
@@ -841,12 +842,12 @@ function renderLessons() {
   document
     .getElementById('allLessonCount')
     .innerText =
-      `${allWords.length} slov`;
+      `${allWords.length} words`;
 }
 
 
 // ==================================================
-// PROMĚNNÉ
+// GAME VARIABLES
 // ==================================================
 
 let selectedLesson = 0;
@@ -877,7 +878,7 @@ let currentHintLevel = 0;
 
 
 // ==================================================
-// VÝBĚR LEKCE
+// SELECT LESSON
 // ==================================================
 
 function selectLesson(lessonNumber) {
@@ -898,7 +899,7 @@ function selectLesson(lessonNumber) {
     if (allWords.length === 0) {
 
       alert(
-        "Zatím nejsou přidána žádná slovíčka."
+        "There are no words yet."
       );
 
       return;
@@ -912,10 +913,10 @@ function selectLesson(lessonNumber) {
     document
       .getElementById('setupTitle')
       .innerText =
-        "Jak velkou část chceš procvičit?";
+        "How much do you want to practice?";
 
 
-    // Skryjeme běžné úrovně
+    // Hide normal levels
 
     document
       .getElementById('normalLevels')
@@ -923,7 +924,7 @@ function selectLesson(lessonNumber) {
         'none';
 
 
-    // Zobrazíme ALL úrovně
+    // Show ALL levels
 
     document
       .getElementById('allLevels')
@@ -931,8 +932,17 @@ function selectLesson(lessonNumber) {
         'block';
 
 
+    // IMPORTANT:
+    // Hide Full lesson button for ALL
+
+    document
+      .getElementById('fullButton')
+      .style.display =
+        'none';
+
+
     // ------------------------------------------
-    // PROCENTO → POČET SLOV
+    // CALCULATE THIRDS
     // ------------------------------------------
 
     const firstThird =
@@ -952,24 +962,22 @@ function selectLesson(lessonNumber) {
     document
       .getElementById('allThirdButton')
       .innerText =
-        `🟢 1. třetina – ${firstThird} slov`;
+        `🟢 First third – ${firstThird} words`;
 
 
     document
       .getElementById('allTwoThirdButton')
       .innerText =
-        `🟡 2. třetiny – ${twoThirds} slov`;
+        `🟡 Two thirds – ${twoThirds} words`;
 
 
     document
       .getElementById('allFullButton')
       .innerText =
-        `🔴 Všechna slovíčka – ${wordCount} slov`;
+        `🔴 All words – ${wordCount} words`;
 
 
-    // ------------------------------------------
-    // ZOBRAZENÍ
-    // ------------------------------------------
+    // Show setup
 
     document
       .getElementById('lessonSelect')
@@ -988,7 +996,7 @@ function selectLesson(lessonNumber) {
 
 
   // ----------------------------------------------
-  // BĚŽNÁ LEKCE
+  // NORMAL LESSON
   // ----------------------------------------------
 
   const wordsForLesson =
@@ -1001,7 +1009,7 @@ function selectLesson(lessonNumber) {
   ) {
 
     alert(
-      "Tato lekce zatím nemá žádná slovíčka."
+      "This lesson has no words yet."
     );
 
     return;
@@ -1012,7 +1020,7 @@ function selectLesson(lessonNumber) {
     wordsForLesson.length;
 
 
-  // Zobrazíme běžné úrovně
+  // Show normal levels
 
   document
     .getElementById('normalLevels')
@@ -1020,20 +1028,30 @@ function selectLesson(lessonNumber) {
       'block';
 
 
+  // Hide ALL levels
+
   document
     .getElementById('allLevels')
     .style.display =
       'none';
 
 
+  // Show Full lesson
+
+  document
+    .getElementById('fullButton')
+    .style.display =
+      'inline-block';
+
+
   document
     .getElementById('setupTitle')
     .innerText =
-      "Jak dlouhou chceš hru?";
+      "How long do you want to play?";
 
 
   // ----------------------------------------------
-  // KRÁTKÁ HRA – 5 SLOV
+  // SHORT GAME – 5 WORDS
   // ----------------------------------------------
 
   const shortButton =
@@ -1048,7 +1066,7 @@ function selectLesson(lessonNumber) {
       'inline-block';
 
     shortButton.innerText =
-      '🟢 Krátká hra – 5 slov';
+      '🟢 Short game – 5 words';
 
   } else {
 
@@ -1058,7 +1076,7 @@ function selectLesson(lessonNumber) {
 
 
   // ----------------------------------------------
-  // STŘEDNÍ HRA – 10 SLOV
+  // MEDIUM GAME – 10 WORDS
   // ----------------------------------------------
 
   const mediumButton =
@@ -1073,7 +1091,7 @@ function selectLesson(lessonNumber) {
       'inline-block';
 
     mediumButton.innerText =
-      '🟡 Střední hra – 10 slov';
+      '🟡 Medium game – 10 words';
 
   } else {
 
@@ -1083,7 +1101,7 @@ function selectLesson(lessonNumber) {
 
 
   // ----------------------------------------------
-  // CELÁ LEKCE
+  // FULL LESSON
   // ----------------------------------------------
 
   const fullButton =
@@ -1093,15 +1111,11 @@ function selectLesson(lessonNumber) {
 
 
   fullButton.innerText =
-    `🔴 Celá lekce – ${wordCount} slov`;
-
-
-  fullButton.style.display =
-    'inline-block';
+    `🔴 Full lesson – ${wordCount} words`;
 
 
   // ----------------------------------------------
-  // ZOBRAZENÍ
+  // SHOW SETUP
   // ----------------------------------------------
 
   document
@@ -1118,7 +1132,7 @@ function selectLesson(lessonNumber) {
 
 
 // ==================================================
-// ZPĚT NA VÝBĚR LEKCÍ
+// BACK TO LESSONS
 // ==================================================
 
 function backToLessons() {
@@ -1147,7 +1161,7 @@ function backToLessons() {
       'block';
 
 
-  // Reset hry
+  // Reset game
 
   selectedLesson = 0;
 
@@ -1214,7 +1228,7 @@ function backToLessons() {
     .innerText = '';
 
 
-  // Vrátíme nastavení úrovní
+  // Reset levels
 
   document
     .getElementById('normalLevels')
@@ -1229,9 +1243,15 @@ function backToLessons() {
 
 
   document
+    .getElementById('fullButton')
+    .style.display =
+      'inline-block';
+
+
+  document
     .getElementById('setupTitle')
     .innerText =
-      "Jak dlouhou chceš hru?";
+      "How long do you want to play?";
 
 
   speechSynthesis.cancel();
@@ -1266,7 +1286,7 @@ function shuffle(array) {
 
 
 // ==================================================
-// START HRY
+// START GAME
 // ==================================================
 
 function start(count) {
@@ -1340,7 +1360,7 @@ function start(count) {
 
 
 // ==================================================
-// START ALL PODLE PROCENTA
+// START ALL BY PERCENTAGE
 // ==================================================
 
 function startAllByPercentage(
@@ -1372,7 +1392,7 @@ function startAllByPercentage(
 
 
 // ==================================================
-// START CELÉ LEKCE
+// START FULL LESSON
 // ==================================================
 
 function startFullLesson() {
@@ -1386,7 +1406,7 @@ function startFullLesson() {
 
 
 // ==================================================
-// PROGRESS
+// UPDATE PROGRESS
 // ==================================================
 
 function updateUI() {
@@ -1405,7 +1425,7 @@ function updateUI() {
 
 
 // ==================================================
-// KONTROLA ODPOVĚDI
+// CHECK ANSWER
 // ==================================================
 
 function checkAnswer() {
@@ -1419,7 +1439,7 @@ function checkAnswer() {
 
 
   // ----------------------------------------------
-  // SPRÁVNĚ
+  // CORRECT
   // ----------------------------------------------
 
   if (
@@ -1441,12 +1461,11 @@ function checkAnswer() {
       .getElementById('result')
       .innerHTML =
         `<div class="result-box correct">
-          ✔ Správně!
+          ✔ Correct!
         </div>`;
 
 
-    // Pokud bylo slovo předtím chybně,
-    // odstraníme ho ze seznamu k opakování.
+    // Remove from mistakes
 
     wrongWords =
       wrongWords.filter(
@@ -1464,7 +1483,7 @@ function checkAnswer() {
 
       streakElement.innerHTML =
         `<span class="streak-hot">
-          🔥 ${streak} správně za sebou!
+          🔥 ${streak} correct in a row!
         </span>`;
 
     } else {
@@ -1479,7 +1498,7 @@ function checkAnswer() {
 
 
   // ----------------------------------------------
-  // ŠPATNĚ
+  // WRONG
   // ----------------------------------------------
 
   else {
@@ -1493,7 +1512,7 @@ function checkAnswer() {
       .getElementById('result')
       .innerHTML =
         `<div class="result-box wrong">
-          ❌ Správně: ${current.en}
+          ❌ Correct answer: ${current.en}
         </div>`;
 
 
@@ -1541,13 +1560,12 @@ function checkAnswer() {
 
 
 // ==================================================
-// DALŠÍ SLOVO
+// NEXT WORD
 // ==================================================
 
 function next() {
 
-  // Pokud ještě nebyla odpověď
-  // zkontrolována
+  // If answer has not been checked yet
 
   if (
     current.en &&
@@ -1561,14 +1579,14 @@ function next() {
 
 
   // ----------------------------------------------
-  // KONEC SEZNAMU
+  // END OF LIST
   // ----------------------------------------------
 
   if (
     index >= selectedWords.length
   ) {
 
-    // Máme ještě chybná slova?
+    // Repeat mistakes
 
     if (wrongWords.length > 0) {
 
@@ -1587,7 +1605,7 @@ function next() {
 
 
   // ----------------------------------------------
-  // DALŠÍ SLOVO
+  // NEXT WORD
   // ----------------------------------------------
 
   current =
@@ -1620,8 +1638,6 @@ function next() {
   checked = false;
 
 
-  // Tlačítka
-
   document
     .getElementById('checkButton')
     .style.display =
@@ -1641,7 +1657,7 @@ function next() {
 
 
 // ==================================================
-// NÁPOVĚDA
+// HINT
 // ==================================================
 
 function hint() {
@@ -1707,7 +1723,7 @@ function hint() {
 
 
 // ==================================================
-// VÝSLOVNOST
+// SPEECH
 // ==================================================
 
 function speak(text) {
@@ -1748,7 +1764,7 @@ function speak(text) {
 
 
 // ==================================================
-// KONEC HRY
+// FINISH
 // ==================================================
 
 function finish() {
@@ -1768,25 +1784,25 @@ function finish() {
   document
     .getElementById('finalScore')
     .innerText =
-      `${correct} / ${target} slov zvládnuto`;
+      `${correct} / ${target} words completed`;
 
 
   document
     .getElementById('finalStreak')
     .innerText =
-      `🔥 Nejlepší série: ${maxStreak} správně za sebou`;
+      `🔥 Best streak: ${maxStreak} correct in a row`;
 
 
   document
     .getElementById('finalMistakes')
     .innerText =
-      `🔁 Chybné pokusy: ${mistakeCount}`;
+      `🔁 Wrong attempts: ${mistakeCount}`;
 
 
   document
     .getElementById('finalHints')
     .innerText =
-      `💡 Použitá nápověda: ${hintCount}×`;
+      `💡 Hints used: ${hintCount}`;
 
 
   speak(
@@ -1796,7 +1812,7 @@ function finish() {
 
 
 // ==================================================
-// ZKUSIT ZNOVU
+// TRY AGAIN
 // ==================================================
 
 function restart() {
@@ -1827,7 +1843,7 @@ function restart() {
 
 
 // ==================================================
-// ENTER = KONTROLA / DALŠÍ
+// ENTER = CHECK / NEXT
 // ==================================================
 
 document
@@ -1846,7 +1862,7 @@ document
 
 
 // ==================================================
-// INICIALIZACE
+// INITIALIZATION
 // ==================================================
 
 renderLessons();
