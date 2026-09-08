@@ -1,13 +1,300 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <title>Můj první program</title>
+  <meta charset="UTF-8">
+  <title>Angličtina – Spelling</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 30px; }
+    .card { font-size: 36px; margin: 20px; }
+    input { font-size: 32px; padding: 12px; margin: 8px; }
+    button { font-size: 22px; padding: 12px 24px; margin: 10px; cursor:pointer; }
+
+    .btn-green { background:#4caf50; color:white; }
+    .btn-yellow { background:#ffc107; }
+    .btn-red { background:#f44336; color:white; }
+
+    .bar {
+      width: 80%;
+      height: 20px;
+      background:#eee;
+      margin: 10px auto;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    .bar-fill {
+      height:100%;
+      width:0%;
+      background:#4caf50;
+    }
+
+    .result-box {
+      font-size: 28px;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 15px;
+      display: inline-block;
+      min-width: 220px;
+    }
+
+    .correct {
+      background: #d4ffd4;
+      color: green;
+    }
+
+    .wrong {
+      background: #ffd4d4;
+      color: red;
+    }
+  </style>
 </head>
 <body>
 
-    <h1>Ahoj světe!</h1>
-    <p>Moje první stránka na GitHubu.</p>
+<h1>Procvičování angličtiny</h1>
+
+<div id="setup">
+  <h2>Jak dlouhou chceš hru?</h2>
+
+  <button class="btn-green" onclick="start(5)">
+    🟢 Krátká hra (5 slov)
+  </button>
+  <br>
+
+  <button class="btn-yellow" onclick="start(8)">
+    🟡 Střední hra (8 slov)
+  </button>
+  <br>
+
+  <button class="btn-red" onclick="start(10)">
+    🔴 Dlouhá hra (10 slov)
+  </button>
+</div>
+
+<div id="game" style="display:none;">
+
+  <div class="bar">
+    <div class="bar-fill" id="progress"></div>
+  </div>
+
+  <div id="progressText"></div>
+
+  <div class="card" id="czWord"></div>
+
+  <input type="text" id="answer" />
+
+  <br>
+
+  <button onclick="next()">Další</button>
+  <button onclick="hint()">Nápověda</button>
+  <button onclick="speak(current.en)">🔊</button>
+
+  <div id="result"></div>
+
+</div>
+
+<div id="final" style="display:none;">
+  <h2 id="finalText"></h2>
+
+  <button onclick="restart()">Další</button>
+</div>
+
+<script>
+
+// 📚 UNIT 8
+const words = [
+  {cz:"mléko", en:"milk"},
+  {cz:"hedvábí", en:"silk"},
+  {cz:"pásek", en:"belt"},
+  {cz:"roztát", en:"melt"},
+  {cz:"zlato", en:"gold"},
+  {cz:"řekl", en:"told"},
+  {cz:"studený", en:"cold"},
+  {cz:"pomoc", en:"help"},
+  {cz:"chaluhy", en:"kelp"},
+  {cz:"hlt", en:"gulp"}
+];
+
+// shuffle
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+let selectedWords = [];
+let current = {};
+let wrongWords = [];
+
+let correct = 0;
+let index = 0;
+let checked = false;
+let target = 0;
+
+function speak(text){
+
+  let u = new SpeechSynthesisUtterance(text);
+
+  let v = speechSynthesis.getVoices();
+
+  if(v.length === 0){
+    setTimeout(()=>speak(text),200);
+    return;
+  }
+
+  u.voice = v.find(x=>x.lang.includes('en')) || v[0];
+
+  speechSynthesis.cancel();
+
+  setTimeout(()=>{
+    speechSynthesis.speak(u);
+  },100);
+}
+
+function start(count){
+
+  selectedWords = shuffle([...words]).slice(0, count);
+
+  target = count;
+
+  wrongWords = [];
+  index = 0;
+  correct = 0;
+  checked = false;
+
+  document.getElementById('setup').style.display='none';
+  document.getElementById('game').style.display='block';
+  document.getElementById('final').style.display='none';
+
+  next();
+}
+
+function updateUI(){
+
+  document.getElementById('progressText').innerText =
+    `${correct} / ${target}`;
+
+  document.getElementById('progress').style.width =
+    (correct/target*100)+'%';
+}
+
+function finish(){
+
+  document.getElementById('game').style.display='none';
+
+  document.getElementById('final').style.display='block';
+
+  let text =
+    `Well done Teo! You have done a great job and just learned ${target} new words! 🎉`;
+
+  document.getElementById('finalText').innerText = text;
+
+  speak(text);
+}
+
+function restart(){
+
+  document.getElementById('final').style.display='none';
+
+  document.getElementById('setup').style.display='block';
+}
+
+function next(){
+
+  let input =
+    document.getElementById('answer')
+    .value
+    .toLowerCase()
+    .trim();
+
+  if(current.en && !checked){
+
+    if(input === current.en.toLowerCase()){
+
+      correct++;
+
+      document.getElementById('result').innerHTML =
+        `<div class="result-box correct">
+          ✔ Správně!
+        </div>`;
+
+      wrongWords =
+        wrongWords.filter(w=>w.en!==current.en);
+
+      speak(current.en);
+
+    } else {
+
+      document.getElementById('result').innerHTML =
+        `<div class="result-box wrong">
+          ❌ Správně: ${current.en}
+        </div>`;
+
+      if(!wrongWords.some(w=>w.en===current.en)){
+        wrongWords.push(current);
+      }
+
+      speak(current.en);
+    }
+
+    updateUI();
+
+    checked = true;
+
+    return;
+  }
+
+  if(index >= selectedWords.length){
+
+    if(wrongWords.length > 0){
+
+      selectedWords = [...wrongWords];
+
+      index = 0;
+
+    } else {
+
+      finish();
+
+      return;
+    }
+  }
+
+  current = selectedWords[index++];
+
+  document.getElementById('czWord').innerText =
+    current.cz;
+
+  document.getElementById('answer').value = '';
+
+  document.getElementById('result').innerText = '';
+
+  checked = false;
+}
+
+function hint(){
+
+  let w = current.en;
+
+  if(!w) return;
+
+  document.getElementById('result').innerText =
+    w[0] + "_".repeat(w.length-2) + w[w.length-1];
+}
+
+document
+  .getElementById('answer')
+  .addEventListener('keydown',e=>{
+
+    if(e.key==='Enter'){
+      next();
+    }
+
+});
+
+</script>
 
 </body>
 </html>
