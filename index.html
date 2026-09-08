@@ -3,29 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <title>Angličtina – Spelling</title>
-  <style>
-    body { font-family: Arial; text-align: center; padding: 30px; }
-    .card { font-size: 36px; margin: 20px; }
-    input { font-size: 32px; padding: 12px; margin: 8px; }
-    button { font-size: 22px; padding: 12px 24px; margin: 10px; cursor:pointer; }
 
-    .btn-green { background:#4caf50; color:white; }
-    .btn-yellow { background:#ffc107; }
-    .btn-red { background:#f44336; color:white; }
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .card {
+      font-size: 36px;
+      margin: 20px;
+    }
+
+    input {
+      font-size: 32px;
+      padding: 12px;
+      margin: 8px;
+    }
+
+    button {
+      font-size: 22px;
+      padding: 12px 24px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .btn-green {
+      background: #4caf50;
+      color: white;
+    }
+
+    .btn-yellow {
+      background: #ffc107;
+    }
+
+    .btn-red {
+      background: #f44336;
+      color: white;
+    }
+
+    .lesson-button {
+      display: block;
+      width: 300px;
+      margin: 12px auto;
+      background: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .lesson-button:hover {
+      opacity: 0.85;
+    }
 
     .bar {
       width: 80%;
       height: 20px;
-      background:#eee;
+      background: #eee;
       margin: 10px auto;
-      border-radius:10px;
-      overflow:hidden;
+      border-radius: 10px;
+      overflow: hidden;
     }
 
     .bar-fill {
-      height:100%;
-      width:0%;
-      background:#4caf50;
+      height: 100%;
+      width: 0%;
+      background: #4caf50;
     }
 
     .result-box {
@@ -49,27 +93,73 @@
     }
   </style>
 </head>
+
 <body>
 
 <h1>Procvičování angličtiny</h1>
 
-<div id="setup">
+
+<!-- ========================= -->
+<!-- VÝBĚR LEKCE -->
+<!-- ========================= -->
+
+<div id="lessonSelect">
+
+  <h2>Vyber spelling lekci</h2>
+
+  <button class="lesson-button" onclick="selectLesson(1)">
+    Spelling 1
+  </button>
+
+  <button class="lesson-button" onclick="selectLesson(2)">
+    Spelling 2
+  </button>
+
+  <button class="lesson-button" onclick="selectLesson(3)">
+    Spelling 3
+  </button>
+
+  <button class="lesson-button" onclick="selectLesson(4)">
+    Spelling 4
+  </button>
+
+  <button class="lesson-button" onclick="selectLesson(5)">
+    Spelling 5
+  </button>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- VÝBĚR DÉLKY HRY -->
+<!-- ========================= -->
+
+<div id="setup" style="display:none;">
+
   <h2>Jak dlouhou chceš hru?</h2>
 
   <button class="btn-green" onclick="start(5)">
     🟢 Krátká hra (5 slov)
   </button>
+
   <br>
 
   <button class="btn-yellow" onclick="start(8)">
     🟡 Střední hra (8 slov)
   </button>
+
   <br>
 
   <button class="btn-red" onclick="start(10)">
     🔴 Dlouhá hra (10 slov)
   </button>
+
 </div>
+
+
+<!-- ========================= -->
+<!-- HRA -->
+<!-- ========================= -->
 
 <div id="game" style="display:none;">
 
@@ -81,48 +171,72 @@
 
   <div class="card" id="czWord"></div>
 
-  <input type="text" id="answer" />
+  <input type="text" id="answer">
 
   <br>
 
   <button onclick="next()">Další</button>
+
   <button onclick="hint()">Nápověda</button>
+
   <button onclick="speak(current.en)">🔊</button>
 
   <div id="result"></div>
 
 </div>
 
+
+<!-- ========================= -->
+<!-- KONEC -->
+<!-- ========================= -->
+
 <div id="final" style="display:none;">
+
   <h2 id="finalText"></h2>
 
   <button onclick="restart()">Další</button>
+
 </div>
+
 
 <script>
 
-// 📚 UNIT 8
-const words = [
-  {cz:"mléko", en:"milk"},
-  {cz:"hedvábí", en:"silk"},
-  {cz:"pásek", en:"belt"},
-  {cz:"roztát", en:"melt"},
-  {cz:"zlato", en:"gold"},
-  {cz:"řekl", en:"told"},
-  {cz:"studený", en:"cold"},
-  {cz:"pomoc", en:"help"},
-  {cz:"chaluhy", en:"kelp"},
-  {cz:"hlt", en:"gulp"}
-];
 
-// shuffle
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+// ==================================================
+// 📚 SPELLING LEKCE
+// ==================================================
+
+const lessons = {
+
+  1: [
+    {cz:"mléko", en:"milk"},
+    {cz:"hedvábí", en:"silk"},
+    {cz:"pásek", en:"belt"},
+    {cz:"roztát", en:"melt"},
+    {cz:"zlato", en:"gold"},
+    {cz:"řekl", en:"told"},
+    {cz:"studený", en:"cold"},
+    {cz:"pomoc", en:"help"},
+    {cz:"chaluhy", en:"kelp"},
+    {cz:"hlt", en:"gulp"}
+  ],
+
+  2: [],
+
+  3: [],
+
+  4: [],
+
+  5: []
+
+};
+
+
+// ==================================================
+// PROMĚNNÉ
+// ==================================================
+
+let selectedLesson = 0;
 
 let selectedWords = [];
 let current = {};
@@ -133,58 +247,107 @@ let index = 0;
 let checked = false;
 let target = 0;
 
-function speak(text){
 
-  let u = new SpeechSynthesisUtterance(text);
+// ==================================================
+// VÝBĚR LEKCE
+// ==================================================
 
-  let v = speechSynthesis.getVoices();
+function selectLesson(lessonNumber) {
 
-  if(v.length === 0){
-    setTimeout(()=>speak(text),200);
+  selectedLesson = lessonNumber;
+
+  const wordsForLesson = lessons[lessonNumber];
+
+  // Pokud lekce zatím nemá slova
+  if (wordsForLesson.length === 0) {
+
+    alert("Tato lekce zatím nemá žádná slovíčka.");
+
     return;
   }
 
-  u.voice = v.find(x=>x.lang.includes('en')) || v[0];
+  document.getElementById('lessonSelect').style.display = 'none';
 
-  speechSynthesis.cancel();
-
-  setTimeout(()=>{
-    speechSynthesis.speak(u);
-  },100);
+  document.getElementById('setup').style.display = 'block';
 }
 
-function start(count){
 
-  selectedWords = shuffle([...words]).slice(0, count);
+// ==================================================
+// SHUFFLE
+// ==================================================
 
-  target = count;
+function shuffle(array) {
+
+  for (let i = array.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+}
+
+
+// ==================================================
+// VÝBĚR DÉLKY HRY
+// ==================================================
+
+function start(count) {
+
+  const wordsForLesson = lessons[selectedLesson];
+
+  // Pokud je v lekci méně slov než požadovaný počet,
+  // použijeme všechna dostupná slova.
+  const numberOfWords =
+    Math.min(count, wordsForLesson.length);
+
+  selectedWords =
+    shuffle([...wordsForLesson]).slice(0, numberOfWords);
+
+  target = numberOfWords;
 
   wrongWords = [];
+
   index = 0;
+
   correct = 0;
+
   checked = false;
 
-  document.getElementById('setup').style.display='none';
-  document.getElementById('game').style.display='block';
-  document.getElementById('final').style.display='none';
+  document.getElementById('setup').style.display = 'none';
+
+  document.getElementById('game').style.display = 'block';
+
+  document.getElementById('final').style.display = 'none';
 
   next();
 }
 
-function updateUI(){
+
+// ==================================================
+// PROGRESS
+// ==================================================
+
+function updateUI() {
 
   document.getElementById('progressText').innerText =
     `${correct} / ${target}`;
 
   document.getElementById('progress').style.width =
-    (correct/target*100)+'%';
+    (correct / target * 100) + '%';
 }
 
-function finish(){
 
-  document.getElementById('game').style.display='none';
+// ==================================================
+// KONEC HRY
+// ==================================================
 
-  document.getElementById('final').style.display='block';
+function finish() {
+
+  document.getElementById('game').style.display = 'none';
+
+  document.getElementById('final').style.display = 'block';
 
   let text =
     `Well done Teo! You have done a great job and just learned ${target} new words! 🎉`;
@@ -194,24 +357,37 @@ function finish(){
   speak(text);
 }
 
-function restart(){
 
-  document.getElementById('final').style.display='none';
+// ==================================================
+// NOVÁ HRA
+// ==================================================
 
-  document.getElementById('setup').style.display='block';
+function restart() {
+
+  document.getElementById('final').style.display = 'none';
+
+  document.getElementById('lessonSelect').style.display = 'block';
 }
 
-function next(){
+
+// ==================================================
+// DALŠÍ SLOVO / KONTROLA ODPOVĚDI
+// ==================================================
+
+function next() {
 
   let input =
-    document.getElementById('answer')
-    .value
-    .toLowerCase()
-    .trim();
+    document
+      .getElementById('answer')
+      .value
+      .toLowerCase()
+      .trim();
 
-  if(current.en && !checked){
 
-    if(input === current.en.toLowerCase()){
+  // Kontrola právě zobrazeného slova
+  if (current.en && !checked) {
+
+    if (input === current.en.toLowerCase()) {
 
       correct++;
 
@@ -221,7 +397,7 @@ function next(){
         </div>`;
 
       wrongWords =
-        wrongWords.filter(w=>w.en!==current.en);
+        wrongWords.filter(w => w.en !== current.en);
 
       speak(current.en);
 
@@ -232,8 +408,10 @@ function next(){
           ❌ Správně: ${current.en}
         </div>`;
 
-      if(!wrongWords.some(w=>w.en===current.en)){
+      if (!wrongWords.some(w => w.en === current.en)) {
+
         wrongWords.push(current);
+
       }
 
       speak(current.en);
@@ -246,9 +424,12 @@ function next(){
     return;
   }
 
-  if(index >= selectedWords.length){
 
-    if(wrongWords.length > 0){
+  // Pokud jsme prošli všechna původní slova
+  if (index >= selectedWords.length) {
+
+    // Opakování chybných slov
+    if (wrongWords.length > 0) {
 
       selectedWords = [...wrongWords];
 
@@ -262,6 +443,8 @@ function next(){
     }
   }
 
+
+  // Zobrazení dalšího slova
   current = selectedWords[index++];
 
   document.getElementById('czWord').innerText =
@@ -272,27 +455,74 @@ function next(){
   document.getElementById('result').innerText = '';
 
   checked = false;
+
+  document.getElementById('answer').focus();
 }
 
-function hint(){
+
+// ==================================================
+// NÁPOVĚDA
+// ==================================================
+
+function hint() {
 
   let w = current.en;
 
-  if(!w) return;
+  if (!w) return;
 
   document.getElementById('result').innerText =
-    w[0] + "_".repeat(w.length-2) + w[w.length-1];
+    w[0] + "_".repeat(w.length - 2) + w[w.length - 1];
 }
+
+
+// ==================================================
+// VÝSLOVNOST
+// ==================================================
+
+function speak(text) {
+
+  let u =
+    new SpeechSynthesisUtterance(text);
+
+  let v =
+    speechSynthesis.getVoices();
+
+  if (v.length === 0) {
+
+    setTimeout(() => speak(text), 200);
+
+    return;
+  }
+
+  u.voice =
+    v.find(x => x.lang.includes('en')) || v[0];
+
+  speechSynthesis.cancel();
+
+  setTimeout(() => {
+
+    speechSynthesis.speak(u);
+
+  }, 100);
+}
+
+
+// ==================================================
+// ENTER = DALŠÍ
+// ==================================================
 
 document
   .getElementById('answer')
-  .addEventListener('keydown',e=>{
+  .addEventListener('keydown', e => {
 
-    if(e.key==='Enter'){
+    if (e.key === 'Enter') {
+
       next();
+
     }
 
-});
+  });
+
 
 </script>
 
