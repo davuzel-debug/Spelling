@@ -755,6 +755,21 @@ const lessons = {
     {cz:"spát", en:"sleep"},
     {cz:"vánek", en:"breeze"},
     {cz:"zmrazit / zamrznout", en:"freeze"}
+  ],
+
+  "1W3": [
+    {cz:"park", en:"park"},
+    {cz:"auto", en:"car"},
+    {cz:"žralok", en:"shark"},
+    {cz:"kytara", en:"guitar"},
+    {cz:"ostrý", en:"sharp"},
+    {cz:"velký", en:"large"},
+    {cz:"tmavý", en:"dark"},
+    {cz:"tvrdý / obtížný", en:"hard"},
+    {cz:"pochodovat", en:"march"},
+    {cz:"začít", en:"start"},
+    {cz:"účtovat / nabíjet", en:"charge"},
+    {cz:"štěkat", en:"bark"}
   ]
 
 };
@@ -820,9 +835,7 @@ function renderLessons() {
 
 
       button.onclick =
-        () => selectLesson(
-          Number(lessonNumber)
-        );
+        () => selectLesson(lessonNumber);
 
 
       button.innerHTML =
